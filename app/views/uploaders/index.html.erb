@@ -1,0 +1,25 @@
+<h1> Uploader </h1>
+
+<%= form_for @upload, :html => {:multipart => true} do |f| %>
+  <p>
+    <%= f.file_field :images, multiple: true %>
+  </p>
+  <p><%= f.submit 'Upload images' %></p>
+<% end %>
+
+<div id="images">
+  <% unless @uploads.empty? %>
+    <% for upload in @uploads %>
+      <% unless upload.images.nil? %>
+        <% for image in upload.images %>
+          <div class="image">
+            <%= image_tag image.url.to_s %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="empty-img-container"> No images to show yet </div>
+  <% end %>
+</div>
+
