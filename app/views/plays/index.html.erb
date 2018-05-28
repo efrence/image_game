@@ -1,0 +1,42 @@
+<h1> Game </h1>
+
+<h1 id="countdown"></h1>
+<div id="img-container">
+</div>
+
+<%= form_with(model: @play, :id => 'new_play') do |f| %>
+  <p>
+    <%= f.text_field :image_url, :id => 'img-input' %>
+  </p>
+  <p>
+    <%= f.text_field :time, :id => 'time'%>
+  </p>
+  <p><%= f.submit 'Save image and time', :id=>'submit', :data => {:disable_with => false} %></p>
+<% end %>
+
+<% unless @plays.empty? %>
+  <table id="images">
+    <tr>
+      <th> Time </th>
+      <th> Image </th>
+    </tr>
+    <% for play in @plays %>
+      <tr>
+        <td> <%= play.time %> </td>
+        <td> 
+          <image width="64" height="64" src="<%= play.image_url %>"/>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <table id="images">
+    <tr>
+      <th> Time </th>
+      <th> Image </th>
+    </tr>
+  </table>
+  <div id="empty-play-container"> No plays to show yet </div>
+<% end %>
+
+

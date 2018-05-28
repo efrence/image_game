@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :plays, only: [:index, :create]
   resources :uploaders, only: [:index, :create]
   get "get_random_images/:number", to: "images#get_random"
   root "uploaders#index"
